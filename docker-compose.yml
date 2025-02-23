@@ -8,7 +8,7 @@ services:
       PGDATA: /var/lib/postgresql/data
       POSTGRES_DB: whatsapp_clone
     volumes:
-      - postgres:/data/postgres
+      - postgres:/var/lib/postgresql/data  # Fixed volume path
     ports:
       - 5432:5432
     networks:
@@ -25,8 +25,10 @@ services:
       KEYCLOAK_ADMIN_PASSWORD: admin
     networks:
       - whatsapp-clone
-    command:
-      - "start-dev --http-enabled=true --http-port=8080"
+    command: 
+      - "start-dev"
+      - "--http-enabled=true"
+      - "--http-port=8080"
 
 networks:
   whatsapp-clone:
@@ -36,4 +38,4 @@ volumes:
   postgres:
     driver: local
   keycloak:
-    driver: local
+    driver: local  # Fixed incorrect syntax
