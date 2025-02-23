@@ -14,6 +14,7 @@ services:
     networks:
       - whatsapp-clone
     restart: unless-stopped
+
   keycloak:
     container_name: keycloak-wac
     image: quay.io/keycloak/keycloak:26.0.0
@@ -25,7 +26,8 @@ services:
     networks:
       - whatsapp-clone
     command:
-      - "start-dev"
+      - "start-dev --http-enabled=true --http-port=8080"
+
 networks:
   whatsapp-clone:
     driver: bridge
